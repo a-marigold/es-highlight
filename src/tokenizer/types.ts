@@ -1,3 +1,9 @@
+type LiteralTokenType =
+    | 'NumberLiteral'
+    | 'StringLiteral'
+    | 'BooleanLiteral'
+    | 'NaNLiteral';
+
 /**
  * Variety of `Token` kinds
  */
@@ -7,7 +13,8 @@ export type TokenType =
     | 'Operator'
     | 'PunctuationMark'
     | 'WhiteSpace'
-    | 'Comment';
+    | 'Comment'
+    | LiteralTokenType;
 
 /**
  *

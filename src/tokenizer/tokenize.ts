@@ -125,6 +125,25 @@ export const tokenize = (source: string): Token[] => {
         }
 
         if (source[pos] === "'" || source[pos] === '"' || source[pos] === '`') {
+            const startPos = pos;
+            const startQuote = source[pos];
+
+            pos++;
+
+            while (pos < sourceLength && source[pos] !== startQuote) {
+                pos++;
+            }
+
+            pos++;
+
+            tokens.push({
+                type: 'StringLiteral',
+                value: source.slice(startPos, pos),
+                start: startPos,
+                end: pos,
+            });
+
+            continue;
         }
     }
 

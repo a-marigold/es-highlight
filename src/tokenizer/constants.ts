@@ -105,10 +105,15 @@ const puntuactionMarksInit: PuncuationMarks = [
     ';',
     ',',
 ];
+
 /**
+ * `Set` with javascript puncuation marks.
  *
+ * @example '{'
  */
 export const puncuationMarks = new Set<string>(puntuactionMarksInit);
+
+// regular expresions (RegExp)
 
 /**
  * RegExp that matches any whitespace

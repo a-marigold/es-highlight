@@ -11,7 +11,6 @@ export type TokenType =
     | 'Identifier'
     | 'Keyword'
     | 'Operator'
-    | 'PunctuationMark'
     | 'WhiteSpace'
     | 'Comment'
     | LiteralTokenType;
@@ -83,6 +82,7 @@ export type TripleOperators = [
     '===',
     '!==',
     '**=',
+
     '<<=',
     '>>=',
     '>>>',
@@ -100,6 +100,7 @@ export type JSKeywords = [
     'let',
 
     'const',
+
     'typeof',
 
     'class',
@@ -107,12 +108,19 @@ export type JSKeywords = [
 
     'new',
     'instanceof',
+
     'void',
     'delete'
 ];
 export type JSKeyword = JSKeywords[number];
-
-export type TSKeywords = ['keyof', 'abstract', 'interface', 'enum', 'type'];
+export type TSKeywords = [
+    'keyof',
+    'abstract',
+    'interface',
+    'enum',
+    'type',
+    'implements'
+];
 export type TSKeyword = TSKeywords[number];
 
 export type Keywords = [...JSKeywords, ...TSKeywords];

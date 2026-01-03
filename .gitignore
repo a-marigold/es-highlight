@@ -8,11 +8,15 @@ coverage
 # logs
 logs
 s
+
 # dotenv environment variable files
 .env.*
-
 
 
 # output
 dist
 *.tgz
+
+# development 
+__dev__
+

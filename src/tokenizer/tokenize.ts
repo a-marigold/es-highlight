@@ -30,6 +30,7 @@ export const tokenize = (source: string): Token[] => {
     let pos = 0;
     while (pos < sourceLength) {
         // TODO: rewrite with handle matching instead of regexp
+
         if (WHITESPACE_REGEXP.test(source[pos])) {
             const startPos = pos;
 
@@ -41,8 +42,11 @@ export const tokenize = (source: string): Token[] => {
 
             tokens.push({
                 type: 'WhiteSpace',
+
                 value: source.slice(startPos, pos),
+
                 start: startPos,
+
                 end: pos,
             });
 
@@ -182,15 +186,3 @@ export const tokenize = (source: string): Token[] => {
 
     return tokens;
 };
-
-const __source = `
-let a = 100; 
-const b  = a instanceof Number;
-
-
-abstract class ABC {};
-
-type a = abstract new() => string;
-`;
-
-console.log(tokenize(__source));

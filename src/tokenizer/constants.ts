@@ -107,9 +107,14 @@ const keywordsInit: Keywords = [
     'const',
     'typeof',
     'class',
+
     'in',
+
     'new',
+
     'instanceof',
+    'function',
+
     'void',
     'delete',
     'keyof',

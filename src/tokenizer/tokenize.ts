@@ -114,6 +114,49 @@ export const tokenize = (source: string): Token[] => {
             continue;
         }
 
+        if (source[pos] === '/') {
+            const startPos = pos;
+
+            pos++;
+
+            if (source[pos] === '*') {
+                pos++;
+
+                while (
+                    pos < sourceLength &&
+                    !(source[pos] === '*' && source[pos + 1] === '/')
+                ) {
+                    pos++;
+                }
+
+                pos += 2;
+            }
+
+            if (source[pos] === '/') {
+                pos++;
+
+                while (
+                    pos < sourceLength &&
+                    source[pos] !== '\r' &&
+                    source[pos] !== '\n'
+                ) {
+                    pos++;
+                }
+            }
+
+            tokens.push({
+                type: 'Comment',
+
+                value: source.slice(startPos, pos),
+
+                start: startPos,
+                end: pos,
+            });
+
+            continue;
+        }
+
+        // operators
         if (singleOperators.has(source[pos])) {
             const startPos = pos;
 
@@ -175,47 +218,6 @@ export const tokenize = (source: string): Token[] => {
             tokens.push({
                 type: 'Operator',
                 value: source.slice(startPos, pos),
-                start: startPos,
-                end: pos,
-            });
-
-            continue;
-        }
-
-        if (source[pos] === '/') {
-            const startPos = pos;
-
-            pos++;
-
-            if (source[pos] === '*') {
-                pos++;
-
-                while (
-                    pos < sourceLength &&
-                    !(source[pos] === '*' && source[pos + 1] === '/')
-                ) {
-                    pos++;
-                }
-
-                pos += 2;
-            }
-
-            if (source[pos] === '/') {
-                pos++;
-
-                while (
-                    pos < sourceLength &&
-                    (source[pos] !== '\r' || source[pos] !== '\n')
-                ) {
-                    pos++;
-                }
-            }
-
-            tokens.push({
-                type: 'Comment',
-
-                value: source.slice(startPos, pos),
-
                 start: startPos,
                 end: pos,
             });

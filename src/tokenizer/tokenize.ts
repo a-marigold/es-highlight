@@ -7,36 +7,10 @@ import {
     doubleOperators,
     tripleOperators,
     quadrupleOperator,
+    keywords,
 } from './constants';
 
-import type { Keyword, Keywords, Token } from './types';
-
-const keywordsInit: Keywords = [
-    'var',
-    'let',
-    'const',
-    'typeof',
-    'class',
-    'in',
-
-    'new',
-    'instanceof',
-    'void',
-    'delete',
-
-    'keyof',
-    'abstract',
-
-    'interface',
-
-    'enum',
-
-    'type',
-];
-/**
- * `Set` with javascript and typescript keywords. Used for tokens
- */
-const keywords = new Set<Keyword>(keywordsInit);
+import type { Token } from './types';
 
 export const tokenize = (source: string): Token[] => {
     const tokens: Token[] = [];
@@ -76,9 +50,7 @@ export const tokenize = (source: string): Token[] => {
             const identifier = source.slice(startPos, pos);
 
             tokens.push({
-                type: keywords.has(identifier as Keyword)
-                    ? 'Keyword'
-                    : 'Identifier',
+                type: keywords.has(identifier) ? 'Keyword' : 'Identifier',
                 value: identifier,
                 start: startPos,
                 end: pos,

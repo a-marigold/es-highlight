@@ -117,3 +117,16 @@ export type TSKeyword = TSKeywords[number];
 
 export type Keywords = [...JSKeywords, ...TSKeywords];
 export type Keyword = Keywords[number];
+
+/**
+ * Type that contains `TokenType` values to be checked in tokenizer.
+ *
+ *
+ * @example
+ * ```typescript
+ * const singleOperatorsInit: SingleOperators = ['=', '+', '-' ...];
+ *
+ * const singleOperators: TokenSet = new Set(singleOperatorsInit);
+ * ```
+ */
+export type TokenSet = Set<string>;

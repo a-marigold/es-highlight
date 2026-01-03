@@ -1,9 +1,9 @@
 import type {
+    TokenSet,
     SingleOperators,
     DoubleOperators,
     TripleOperators,
     QuadrupleOperator,
-    Keyword,
     Keywords,
 } from './types';
 
@@ -76,21 +76,21 @@ const tripleOperatorsInit: TripleOperators = [
  *
  * @example '='
  */
-export const singleOperators = new Set<string>(singleOperatorsInit);
+export const singleOperators: TokenSet = new Set(singleOperatorsInit);
 
 /**
- * `Set` with all javascript two-symbol operators.
+ * `Set` with all javascript two-symbol operators
  *
  * @example '++'
  */
-export const doubleOperators = new Set<string>(doubleOperatorsInit);
+export const doubleOperators: TokenSet = new Set(doubleOperatorsInit);
 
 /**
  * `Set` with all javascript three-symbol operators
  *
  * @example '>>>'
  */
-export const tripleOperators = new Set<string>(tripleOperatorsInit);
+export const tripleOperators: TokenSet = new Set(tripleOperatorsInit);
 
 /**
  * The javascript four-symbol operator.
@@ -98,6 +98,31 @@ export const tripleOperators = new Set<string>(tripleOperatorsInit);
  * Always equals '>>>=' on December 18, 2025 ECMAScript Specification
  */
 export const quadrupleOperator: QuadrupleOperator = '>>>=';
+
+// keywords
+
+const keywordsInit: Keywords = [
+    'var',
+    'let',
+    'const',
+    'typeof',
+    'class',
+    'in',
+    'new',
+    'instanceof',
+    'void',
+    'delete',
+    'keyof',
+    'abstract',
+    'interface',
+    'enum',
+    'type',
+];
+
+/**
+ * `Set` with javascript and typescript keywords
+ */
+export const keywords: TokenSet = new Set(keywordsInit);
 
 // regular expresions (RegExp)
 

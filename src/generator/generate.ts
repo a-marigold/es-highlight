@@ -11,7 +11,9 @@ export const generate = (
 
     let tokenPos = 0;
     while (tokenPos < tokensLength) {
-        if (tokens[tokenPos].type === 'WhiteSpace') {
+        const currentToken = tokens[tokenPos];
+
+        if (currentToken.type === 'WhiteSpace') {
             generated +=
                 '<span' +
                 ' ' +
@@ -22,12 +24,29 @@ export const generate = (
                 '">';
 
             let charPos = 0;
-            while (charPos < tokens[tokenPos].value.length) {
+            while (charPos < currentToken.value.length) {
                 generated += ' ';
                 charPos++;
             }
 
             generated += '</span>';
+
+            tokenPos++;
+
+            continue;
+        }
+
+        if (currentToken.type === 'Operator') {
+            generated +=
+                '<span' +
+                ' ' +
+                'class="' +
+                cssClasses.token +
+                ' ' +
+                cssClasses.operator +
+                '">' +
+                currentToken.value +
+                '</span>';
 
             tokenPos++;
 

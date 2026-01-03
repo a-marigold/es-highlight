@@ -6,7 +6,8 @@
     },
 
     "files": {
-        "ignoreUnknown": false
+        "ignoreUnknown": false,
+        "includes": ["*", "!node_modules", "!dist"]
     },
 
     "formatter": {

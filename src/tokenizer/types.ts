@@ -26,28 +26,53 @@ export type Token = {
     end: number;
 };
 
-export type Operators = [
+export type SingleOperators = [
     '=',
     '+',
     '-',
     '*',
     '/',
+    '%',
+    '~',
+    '^',
+
+    '.',
+    ':',
     '|',
     '&',
-    '.',
+    '?',
+    '!',
+    '<',
+    '>'
+];
+export type SingleOperator = SingleOperators[number];
 
-    ':',
+export type DoubleOperators = [
+    '==',
+
+    '!=',
+    '<=',
+    '>=',
     '++',
     '--',
-    '&&',
-    '?',
-    '||',
+    '**',
+    '*=',
+    '/=',
+    '%=',
+    '^=',
     '&=',
     '|=',
-    '&&=',
-    '||='
+
+    '&&',
+    '||',
+    '??'
 ];
-export type Operator = Operators[number];
+export type DoubleOperator = DoubleOperators[number];
+
+export type TripleOperators = ['===', '!==', '**=', '>>=', '<<=', '>>>'];
+export type TripleOperator = TripleOperators[number];
+
+export type QuadrupleOperator = '>>>=';
 
 export type PuncuationMarks = ['{', '}', '[', ']', '(', ')', ';', ','];
 export type PunctuationMark = PuncuationMarks[number];
@@ -62,7 +87,10 @@ export type JSKeywords = [
     'class',
     'in',
 
-    'new'
+    'new',
+    'instanceof',
+    'void',
+    'delete'
 ];
 export type JSKeyword = JSKeywords[number];
 

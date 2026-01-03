@@ -27,6 +27,7 @@ export const tokenize = (source: string): Token[] => {
 
     const sourceLength = source.length;
 
+    // TODO: rewrite tokens.push in the loop on tokens[tokens.length]
     let pos = 0;
     while (pos < sourceLength) {
         // TODO: rewrite with handle matching instead of regexp
@@ -174,6 +175,47 @@ export const tokenize = (source: string): Token[] => {
             tokens.push({
                 type: 'Operator',
                 value: source.slice(startPos, pos),
+                start: startPos,
+                end: pos,
+            });
+
+            continue;
+        }
+
+        if (source[pos] === '/') {
+            const startPos = pos;
+
+            pos++;
+
+            if (source[pos] === '*') {
+                pos++;
+
+                while (
+                    pos < sourceLength &&
+                    !(source[pos] === '*' && source[pos + 1] === '/')
+                ) {
+                    pos++;
+                }
+
+                pos += 2;
+            }
+
+            if (source[pos] === '/') {
+                pos++;
+
+                while (
+                    pos < sourceLength &&
+                    (source[pos] !== '\r' || source[pos] !== '\n')
+                ) {
+                    pos++;
+                }
+            }
+
+            tokens.push({
+                type: 'Comment',
+
+                value: source.slice(startPos, pos),
+
                 start: startPos,
                 end: pos,
             });

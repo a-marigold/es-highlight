@@ -34,7 +34,6 @@ export type SingleOperators = [
     '%',
     '~',
     '^',
-
     '.',
     ':',
     '|',
@@ -109,6 +108,7 @@ export type JSKeywords = [
     'new',
     'instanceof',
 
+    'function',
     'void',
     'delete'
 ];

@@ -1,0 +1,52 @@
+import { tokenize } from '../tokenizer';
+import { generate } from '../generator';
+import type { HighlightCSSClasses } from '../generator';
+
+/**
+ *
+ * Returns HTML with higlighted source code from received `source`.
+ *
+ * @param {string} source JavaScript or TypeScript source code to highlight.
+ * @param {HiglightCSSClasses} cssClasses object with CSS classes.
+ *
+ * @returns {string} string with HTML of highlighted code.
+ *
+ * @example
+ * ```typescript
+ * const cssClasses: HighlightCSSClasses = {
+ *   pre: 'pre-element-class',
+ *   code: 'my-code-element-class',
+ *
+ *   line: 'line-class',
+ *   token: 'token-class',
+ *
+ *   operator: 'operator-class',
+ *
+ *   keyword: 'keyword-class',
+ *   stringLiteral: 'string-class',
+ *
+ *   ...
+ * }
+ *
+ * highlight('let a = "hello";', cssClasses);
+ * ```
+ * Output will be:
+ * ```html
+ * <pre class="pre-element-class">
+ *   <code class="code-element-class">
+ *     <div class="line-class"> ... </div> <!-- code line with generated tokens inside -->
+ *   </code>
+ * </pre>
+ * ```
+ */
+export const highlight = (
+    source: string,
+
+    cssClasses: HighlightCSSClasses
+): string => {
+    const tokens = tokenize(source);
+
+    const generated = generate(tokens, cssClasses);
+
+    return generated;
+};

@@ -22,7 +22,15 @@ export type TokenType =
 export type Token = {
     type: TokenType;
     value: string;
+
+    /**
+     * Start position of token value in source code
+     */
     start: number;
+
+    /**
+     * The end of token value in source code
+     */
     end: number;
 };
 
@@ -128,6 +136,7 @@ export type Keywords = [...JSKeywords, ...TSKeywords];
 export type Keyword = Keywords[number];
 
 /**
+ *
  * Type that contains `TokenType` values to be checked in tokenizer.
  *
  *

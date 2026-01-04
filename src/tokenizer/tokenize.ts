@@ -1,5 +1,4 @@
 import {
-    WHITESPACE_REGEXP,
     IDENTIFIER_START_REGEXP,
     IDENTIFIER_REGEXP,
     NUMBER_REGEXP,
@@ -13,6 +12,7 @@ import {
 import type { Token } from './types';
 
 /**
+ *
  * *Tokenizer* or *Lexer* function.
  *
  *
@@ -30,8 +30,6 @@ export const tokenize = (source: string): Token[] => {
     // TODO: rewrite tokens.push in the loop on tokens[tokens.length]
     let pos = 0;
     main: while (pos < sourceLength) {
-        // TODO: rewrite with handle matching instead of regexp
-
         if (source[pos] === ' ' || source[pos] === '\t') {
             const startPos = pos;
 
@@ -137,6 +135,7 @@ export const tokenize = (source: string): Token[] => {
 
             continue main;
         }
+
         // comments
         if (source[pos] === '/') {
             const startPos = pos;

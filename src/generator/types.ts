@@ -5,6 +5,19 @@
  *
  * CSS modules also can be used
  *
+ * &nbsp;
+ *
+ * Default generated HTML structure:
+ * ```html
+ * <pre>
+ *   <code>
+ *     <div> ... </div> <!-- line -->
+ *
+ *     ...
+ *   </code>
+ * </pre>
+ * ```
+ *
  * @example
  * const CSSClasses: HighlightCSSClasses = {
  *    token: 'my-token-classname',
@@ -14,7 +27,28 @@
  */
 export type HighlightCSSClasses = Partial<{
     /**
-     * `token` class is used for every token of code, even whitespace.
+     *
+     *
+     * `pre` class is used for root wrapper element
+     */
+    pre: string;
+
+    /**
+     * `code` class is used for generated code text element
+     */
+    code: string;
+
+    /**
+     * `line` class is used for every line of generated code
+     */
+    line: string;
+
+    /**
+     *
+     */
+
+    /**
+     * `token` class is used for every token of code, even whitespace
      */
     token: string;
 

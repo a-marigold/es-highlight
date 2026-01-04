@@ -9,7 +9,14 @@ export const generate = (
 ): string => {
     const tokensLength = tokens.length;
 
-    let generated: string = '';
+    let generated: string =
+        '<pre class="' +
+        cssClasses.pre +
+        '"><code class="' +
+        cssClasses.code +
+        '"><div class="' +
+        cssClasses.line +
+        '">';
 
     let tokenPos = 0;
     while (tokenPos < tokensLength) {
@@ -30,6 +37,14 @@ export const generate = (
             }
 
             generated += CLOSED_SPAN;
+
+            tokenPos++;
+
+            continue;
+        }
+
+        if (currentToken.type === 'LineDivision') {
+            generated += '</div><div class="' + cssClasses.line + '">';
 
             tokenPos++;
 
@@ -147,6 +162,7 @@ export const generate = (
             generated +=
                 OPENED_SPAN_WITH_CLASS +
                 cssClasses.token +
+                ' ' +
                 cssClasses.comment +
                 '">' +
                 currentToken.value +
@@ -157,8 +173,11 @@ export const generate = (
             continue;
         }
 
+        // fallback
         tokenPos++;
     }
+
+    generated += '</div></code></pre>';
 
     return generated;
 };

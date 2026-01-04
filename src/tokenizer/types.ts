@@ -5,7 +5,7 @@ type LiteralTokenType =
     | 'NaNLiteral';
 
 /**
- * Variety of `Token` kinds
+ * Variety of `Token` types
  */
 export type TokenType =
     | 'Identifier'
@@ -13,6 +13,7 @@ export type TokenType =
     | 'Operator'
     | 'WhiteSpace'
     | 'Comment'
+    | 'LineDivision'
     | LiteralTokenType;
 
 /**

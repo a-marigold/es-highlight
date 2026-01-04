@@ -54,6 +54,7 @@ export const tokenize = (source: string): Token[] => {
             continue;
         }
 
+        // literals
         if (IDENTIFIER_START_REGEXP.test(source[pos])) {
             const startPos = pos;
 
@@ -96,7 +97,6 @@ export const tokenize = (source: string): Token[] => {
 
             continue;
         }
-
         if (NUMBER_REGEXP.test(source[pos])) {
             const startPos = pos;
 
@@ -114,23 +114,11 @@ export const tokenize = (source: string): Token[] => {
             continue;
         }
 
+        // comments
         if (source[pos] === '/') {
             const startPos = pos;
 
             pos++;
-
-            if (source[pos] === '*') {
-                pos++;
-
-                while (
-                    pos < sourceLength &&
-                    !(source[pos] === '*' && source[pos + 1] === '/')
-                ) {
-                    pos++;
-                }
-
-                pos += 2;
-            }
 
             if (source[pos] === '/') {
                 pos++;
@@ -142,18 +130,81 @@ export const tokenize = (source: string): Token[] => {
                 ) {
                     pos++;
                 }
+
+                if (source[pos] === '\r') {
+                    pos += 2;
+                }
+
+                tokens[tokens.length] = {
+                    type: 'Comment',
+
+                    value: source.slice(startPos, pos),
+                    start: startPos,
+                    end: pos,
+                };
+
+                tokens[tokens.length] = {
+                    type: 'LineDivision',
+
+                    value: '\n',
+
+                    start: startPos,
+                    end: pos,
+                };
+
+                continue;
             }
 
-            tokens.push({
-                type: 'Comment',
+            if (source[pos] === '*') {
+                pos++;
 
-                value: source.slice(startPos, pos),
+                let lastCommentStart = startPos;
 
-                start: startPos,
-                end: pos,
-            });
+                while (
+                    pos < sourceLength &&
+                    !(source[pos] === '*' && source[pos + 1] === '/')
+                ) {
+                    // console.log(`${pos}`, source[pos]);
+                    if (source[pos] === '\n' || source[pos] === '\r') {
+                        tokens[tokens.length] = {
+                            type: 'Comment',
 
-            continue;
+                            value: source.slice(lastCommentStart, pos),
+
+                            start: startPos,
+                            end: pos,
+                        };
+                        tokens[tokens.length] = {
+                            type: 'LineDivision',
+
+                            value: '\n',
+
+                            start: pos,
+                            end: pos + 1,
+                        };
+
+                        if (source[pos] === '\r') {
+                            pos++;
+                        }
+
+                        pos++;
+                        lastCommentStart = pos;
+                    }
+
+                    pos++;
+                }
+
+                pos += 2;
+
+                tokens[tokens.length] = {
+                    type: 'Comment',
+                    value: source.slice(lastCommentStart, pos),
+                    start: startPos,
+                    end: pos,
+                };
+
+                continue;
+            }
         }
 
         // operators

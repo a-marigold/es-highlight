@@ -6,7 +6,7 @@ import {
     doubleOperators,
     tripleOperators,
     quadrupleOperator,
-    identifierLike,
+    identifierLikeMap,
 } from './constants';
 
 import type { Token, IdentifierLike } from './types';
@@ -88,7 +88,7 @@ export const tokenize = (source: string): Token[] => {
 
             tokens[tokens.length] = {
                 type:
-                    identifierLike[identifier as IdentifierLike] ??
+                    identifierLikeMap[identifier as IdentifierLike] ??
                     'Identifier',
                 value: identifier,
                 start: startPos,

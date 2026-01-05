@@ -56,7 +56,9 @@ export type HighlightCSSClasses = Partial<{
     whitespace: string;
     comment: string;
 
+    // identifier like token types ('Keyword', 'Instruction')
     keyword: string;
+    instruction: string;
 
     operator: string;
 

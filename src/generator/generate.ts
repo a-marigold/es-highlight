@@ -108,6 +108,21 @@ export const generate = (
             continue;
         }
 
+        if (currentToken.type === 'Instruction') {
+            generated +=
+                OPENED_SPAN_WITH_CLASS +
+                cssClasses.token +
+                ' ' +
+                cssClasses.instruction +
+                '>' +
+                currentToken.value +
+                CLOSED_SPAN;
+
+            tokenPos++;
+
+            continue;
+        }
+
         // literals
         if (currentToken.type === 'StringLiteral') {
             generated +=

@@ -122,6 +122,8 @@ export type JSKeywords = [
     'void',
     'delete',
 
+    'this',
+
     'debugger'
 ];
 export type JSKeyword = JSKeywords[number];
@@ -151,26 +153,33 @@ type JSInstruction =
     | 'try'
     | 'catch'
     | 'finally'
+    | 'async'
     | 'await'
     | 'yield'
     | 'with'
     | 'assert'
-    | 'default';
+    | 'default'
+    | 'throw';
 
 type TSInstruction = 'as' | 'asserts' | 'is';
 export type Instruction = JSInstruction | TSInstruction;
 
+type Literal = 'true' | 'false' | 'NaN';
+
 /**
  * Token Types that are like `Identifier` TokenType
  */
-export type IdentifierLike = Keyword | Instruction;
+export type IdentifierLike = Keyword | Instruction | Literal;
 
 /**
  * Record with Token Types that are like `Identifier` TokenType.
  * Used to determine correct TokenType
  */
 export type IdentifierLikeMap = {
-    [K in IdentifierLike]: Extract<TokenType, 'Keyword' | 'Instruction'>;
+    [K in IdentifierLike]: Extract<
+        TokenType,
+        'Keyword' | 'Instruction' | 'BooleanLiteral' | 'NaNLiteral'
+    >;
 };
 
 /**

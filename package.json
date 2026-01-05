@@ -1,6 +1,6 @@
 {
     "name": "ts-highlight",
-    "version": "0.1.0",
+    "version": "0.4.0",
     "module": "./dist/index.js",
     "type": "module",
     "private": false,
@@ -9,31 +9,47 @@
         "name": "marigold",
         "url": "https://github.com/a-marigold"
     },
-    "repository": {
-        "type": "github",
-        "url": "https://github.com/a-marigold/ts-highlight"
-    },
     "scripts": {
         "lint": "biome check",
         "build": "rollup -c",
         "prepublishOnly": "bun run build",
         "pshPub": "bun publish --access public"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/a-marigold/ts-highlight"
+    },
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
+    "readme": "./README.md",
+    "maintainers": [
+        {
+            "name": "marigold",
+            "url": "https://github.com/a-marigold"
+        }
+    ],
     "keywords": [
-        "es-higlight",
+        "ts-higlight",
         "higlight",
-        "syntax-higlight"
+        "syntax-higlight",
+        "highlighter",
+        "themes"
+    ],
+    "files": [
+        "dist"
     ],
     "devDependencies": {
         "@biomejs/biome": "^2.3.10",
         "@rollup/plugin-terser": "^0.4.4",
         "@rollup/plugin-typescript": "^12.3.0",
         "@types/bun": "latest",
+        "postcss": "^8.5.6",
+        "postcss-modules": "^6.0.1",
         "rollup": "^4.54.0",
         "rollup-plugin-dts": "^6.3.0",
-        "tslib": "^2.8.1"
+        "rollup-plugin-postcss": "^4.0.2",
+        "tslib": "^2.8.1",
+        "typescript-plugin-css-modules": "^5.2.0"
     },
     "peerDependencies": {
         "typescript": "^5"

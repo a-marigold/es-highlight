@@ -15,7 +15,7 @@
 ### Usage
 
 ```typescript
-import { higlight, type HighlightCSSClasses } from 'ts-higlight';
+import { highlight, type HighlightCSSClasses } from 'ts-higlight';
 
 // styles of generated code are extensible
 const cssClasses: HiglightCSSClasses = {

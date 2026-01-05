@@ -6,10 +6,10 @@ import {
     doubleOperators,
     tripleOperators,
     quadrupleOperator,
-    keywords,
+    identifierLike,
 } from './constants';
 
-import type { Token } from './types';
+import type { Token, IdentifierLike } from './types';
 
 /**
  *
@@ -87,7 +87,9 @@ export const tokenize = (source: string): Token[] => {
             const identifier = source.slice(startPos, pos);
 
             tokens[tokens.length] = {
-                type: keywords.has(identifier) ? 'Keyword' : 'Identifier',
+                type:
+                    identifierLike[identifier as IdentifierLike] ??
+                    'Identifier',
                 value: identifier,
                 start: startPos,
                 end: pos,

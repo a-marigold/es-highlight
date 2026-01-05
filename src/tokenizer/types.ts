@@ -120,7 +120,9 @@ export type JSKeywords = [
 
     'function',
     'void',
-    'delete'
+    'delete',
+
+    'debugger'
 ];
 export type JSKeyword = JSKeywords[number];
 export type TSKeywords = [
@@ -129,14 +131,15 @@ export type TSKeywords = [
     'interface',
     'enum',
     'type',
-    'implements'
+    'implements',
+    'declare'
 ];
 export type TSKeyword = TSKeywords[number];
 
 export type Keywords = [...JSKeywords, ...TSKeywords];
 export type Keyword = Keywords[number];
 
-export type Instruction =
+type JSInstruction =
     | 'for'
     | 'do'
     | 'while'
@@ -147,13 +150,27 @@ export type Instruction =
     | 'package'
     | 'try'
     | 'catch'
-    | 'finally';
+    | 'finally'
+    | 'await'
+    | 'yield'
+    | 'with'
+    | 'assert'
+    | 'default';
 
-export type IdentifierLike = {
-    [K in Keyword | Instruction]: Extract<
-        TokenType,
-        'Identifier' | 'Keyword' | 'Instruction'
-    >;
+type TSInstruction = 'as' | 'asserts' | 'is';
+export type Instruction = JSInstruction | TSInstruction;
+
+/**
+ * Token Types that are like `Identifier` TokenType
+ */
+export type IdentifierLike = Keyword | Instruction;
+
+/**
+ * Record with Token Types that are like `Identifier` TokenType.
+ * Used to determine correct TokenType
+ */
+export type IdentifierLikeMap = {
+    [K in IdentifierLike]: Extract<TokenType, 'Keyword' | 'Instruction'>;
 };
 
 /**

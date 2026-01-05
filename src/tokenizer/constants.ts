@@ -4,7 +4,7 @@ import type {
     DoubleOperators,
     TripleOperators,
     QuadrupleOperator,
-    Keywords,
+    IdentifierLikeMap,
 } from './types';
 
 // operators
@@ -99,36 +99,44 @@ export const tripleOperators: TokenSet = new Set(tripleOperatorsInit);
  */
 export const quadrupleOperator: QuadrupleOperator = '>>>=';
 
-// keywords
-
-const keywordsInit: Keywords = [
-    'var',
-    'let',
-    'const',
-    'typeof',
-    'class',
-
-    'in',
-
-    'new',
-
-    'instanceof',
-    'function',
-
-    'void',
-    'delete',
-    'keyof',
-    'abstract',
-    'interface',
-    'enum',
-    'type',
-    'implements',
-];
-
+// identifier like token types
 /**
- * `Set` with javascript and typescript keywords
+ * Object with Identifier like literals and their TokenType.
+ *
+ * Used to determine correct TokenType.
+ *
+ *
+ *
+ * @example
+ * ```typescript
+ * const unknownIdentifier = 'function';
+ *
+ * const tokenTypeOfUnknownIdentifier = identifierLikeMap[unknownIdentifier as IdentifierLike];
+ *
+ * // Output:
+ *
+ * 'Keyword';
+ *
+ * ```
  */
-export const keywords: TokenSet = new Set(keywordsInit);
+export const identifierLikeMap: IdentifierLikeMap = {
+    abstract: 'Keyword',
+    as: 'Instruction',
+    assert: 'Instruction',
+    asserts: 'Instruction',
+    await: 'Instruction',
+    break: 'Instruction',
+    catch: 'Instruction',
+    class: 'Keyword',
+    const: 'Keyword',
+    continue: 'Instruction',
+    debugger: 'Keyword',
+    declare: 'Keyword',
+    default: 'Instruction',
+    delete: 'Keyword',
+    do: 'Instruction',
+    enum: 'Keyword',
+};
 
 // regular expresions (RegExp)
 

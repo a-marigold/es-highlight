@@ -6,6 +6,8 @@ import type { HighlightCSSClasses } from '../generator';
  *
  * Transforms received `source` string to HTML with higlighted source code.
  *
+ * Classes could be divided with space as if they are in default HTML `class` attribute.
+ *
  * @param {string} source JavaScript or TypeScript source code to highlight.
  * @param {HiglightCSSClasses} cssClasses object with CSS classes.
  *
@@ -14,10 +16,10 @@ import type { HighlightCSSClasses } from '../generator';
  * @example
  * ```typescript
  * const cssClasses: HighlightCSSClasses = {
- *   pre: 'pre-element-class',
+ *   pre: 'pre-element-class second-class',
  *   code: 'my-code-element-class',
  *
- *   line: 'line-class',
+ *   line: 'line-class my-line third-class',
  *   token: 'token-class',
  *
  *   operator: 'operator-class',

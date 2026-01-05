@@ -1,5 +1,6 @@
 {
-    "name": "es-highlight",
+    "name": "ts-highlight",
+    "version": "0.1.0",
     "module": "./dist/index.js",
     "type": "module",
     "private": false,
@@ -10,11 +11,13 @@
     },
     "repository": {
         "type": "github",
-        "url": "https://github.com/a-marigold/es-higlight"
+        "url": "https://github.com/a-marigold/ts-highlight"
     },
     "scripts": {
         "lint": "biome check",
-        "build": "rollup -c"
+        "build": "rollup -c",
+        "prepublishOnly": "bun run build",
+        "pshPub": "bun publish --access public"
     },
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",

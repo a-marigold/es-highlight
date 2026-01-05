@@ -25,7 +25,7 @@ const cssClasses: HiglightCSSClasses = {
 
     token: 'token-class', // `token` class is the class of every token of generated code
 
-    // Every token have different class for fine grained configuration
+    // Every token has its own class for fine grained configuration
     operator: 'operator-class',
 
     identifier: 'identifier',

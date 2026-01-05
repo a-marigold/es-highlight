@@ -14,6 +14,7 @@ export type TokenType =
     | 'WhiteSpace'
     | 'Comment'
     | 'LineDivision'
+    | 'Instruction'
     | LiteralTokenType;
 
 /**
@@ -134,6 +135,26 @@ export type TSKeyword = TSKeywords[number];
 
 export type Keywords = [...JSKeywords, ...TSKeywords];
 export type Keyword = Keywords[number];
+
+export type Instruction =
+    | 'for'
+    | 'do'
+    | 'while'
+    | 'continue'
+    | 'break'
+    | 'import'
+    | 'export'
+    | 'package'
+    | 'try'
+    | 'catch'
+    | 'finally';
+
+export type IdentifierLike = {
+    [K in Keyword | Instruction]: Extract<
+        TokenType,
+        'Identifier' | 'Keyword' | 'Instruction'
+    >;
+};
 
 /**
  *

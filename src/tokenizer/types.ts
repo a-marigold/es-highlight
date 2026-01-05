@@ -2,7 +2,9 @@ type LiteralTokenType =
     | 'NumberLiteral'
     | 'StringLiteral'
     | 'BooleanLiteral'
-    | 'NaNLiteral';
+    | 'NaNLiteral'
+    | 'NullLiteral'
+    | 'UndefinedLiteral';
 
 /**
  * Variety of `Token` types
@@ -148,6 +150,7 @@ type JSInstruction =
     | 'continue'
     | 'break'
     | 'import'
+    | 'from'
     | 'export'
     | 'package'
     | 'try'
@@ -159,12 +162,13 @@ type JSInstruction =
     | 'with'
     | 'assert'
     | 'default'
-    | 'throw';
+    | 'throw'
+    | 'return';
 
 type TSInstruction = 'as' | 'asserts' | 'is';
 export type Instruction = JSInstruction | TSInstruction;
 
-type Literal = 'true' | 'false' | 'NaN';
+type Literal = 'true' | 'false' | 'NaN' | 'null' | 'undefined';
 
 /**
  * Token Types that are like `Identifier` TokenType
@@ -178,7 +182,12 @@ export type IdentifierLike = Keyword | Instruction | Literal;
 export type IdentifierLikeMap = {
     [K in IdentifierLike]: Extract<
         TokenType,
-        'Keyword' | 'Instruction' | 'BooleanLiteral' | 'NaNLiteral'
+        | 'Keyword'
+        | 'Instruction'
+        | 'BooleanLiteral'
+        | 'NaNLiteral'
+        | 'NullLiteral'
+        | 'UndefinedLiteral'
     >;
 };
 

@@ -67,9 +67,11 @@ export type HighlightCSSClasses = Partial<{
     mutableIdentifier: string;
 
     // literals
-    numberLiteral: string;
-    stringLiteral: string;
-    booleanLiteral: string;
-    NaNLiteral: string;
+    number: string;
+    string: string;
+    boolean: string;
+    NaN: string;
     bigintChar: string;
+    null: string;
+    undefined: string;
 }>;

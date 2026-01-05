@@ -1,6 +1,6 @@
 {
     "name": "ts-highlight",
-    "version": "1.1.0",
+    "version": "1.1.2",
     "module": "./dist/index.js",
     "type": "module",
     "private": false,
@@ -22,6 +22,7 @@
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "readme": "./README.md",
+    "description": "Generates HTML with highlighted TypeScript, JavaScript code",
     "maintainers": [
         {
             "name": "marigold",
@@ -29,9 +30,9 @@
         }
     ],
     "keywords": [
-        "ts-higlight",
-        "higlight",
-        "syntax-higlight",
+        "ts-highlight",
+        "highlight",
+        "syntax-highlight",
         "highlighter",
         "themes"
     ],

@@ -136,7 +136,7 @@ export const generate = (
                 OPENED_SPAN_WITH_CLASS +
                 cssClasses.token +
                 ' ' +
-                cssClasses.stringLiteral +
+                cssClasses.string +
                 '">' +
                 currentToken.value +
                 CLOSED_SPAN;
@@ -151,7 +151,7 @@ export const generate = (
                 OPENED_SPAN_WITH_CLASS +
                 cssClasses.token +
                 ' ' +
-                cssClasses.numberLiteral +
+                cssClasses.number +
                 '">' +
                 currentToken.value +
                 CLOSED_SPAN;
@@ -166,7 +166,7 @@ export const generate = (
                 OPENED_SPAN_WITH_CLASS +
                 cssClasses.token +
                 ' ' +
-                cssClasses.booleanLiteral +
+                cssClasses.boolean +
                 '">' +
                 currentToken.value +
                 CLOSED_SPAN;
@@ -181,7 +181,34 @@ export const generate = (
                 OPENED_SPAN_WITH_CLASS +
                 cssClasses.token +
                 ' ' +
-                cssClasses.NaNLiteral +
+                cssClasses.NaN +
+                '">' +
+                currentToken.value +
+                CLOSED_SPAN;
+
+            tokenPos++;
+
+            continue;
+        }
+
+        if (currentToken.type === 'UndefinedLiteral') {
+            generated +=
+                OPENED_SPAN_WITH_CLASS +
+                cssClasses.undefined +
+                '">' +
+                currentToken.value +
+                CLOSED_SPAN;
+
+            tokenPos++;
+
+            continue;
+        }
+
+        if (currentToken.type === 'NullLiteral') {
+            generated +=
+                OPENED_SPAN_WITH_CLASS +
+                cssClasses.token +
+                cssClasses.null +
                 '">' +
                 currentToken.value +
                 CLOSED_SPAN;

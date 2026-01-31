@@ -1,0 +1,48 @@
+{
+    "name": "ts-highlight",
+    "version": "2.3.0",
+    "module": "./dist/index.js",
+    "type": "module",
+    "private": false,
+    "license": "UNLICENSED",
+    "author": {
+        "name": "marigold",
+        "url": "https://github.com/a-marigold"
+    },
+    "scripts": {
+        "lint": "biome check",
+        "build": "rollup -c",
+        "prepublishOnly": "bun run build",
+        "pshPub": "bun publish --access public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/a-marigold/ts-highlight"
+    },
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "readme": "./README.md",
+    "description": "Generates HTML with highlighted TypeScript, JavaScript code",
+    "maintainers": [
+        {
+            "name": "marigold",
+            "url": "https://github.com/a-marigold"
+        }
+    ],
+    "keywords": [
+        "ts-highlight",
+        "highlight",
+        "syntax-highlight",
+        "highlighter",
+        "themes"
+    ],
+    "files": [
+        "dist"
+    ],
+    "contributors": [
+        "a-marigold"
+    ],
+    "peerDependencies": {
+        "typescript": "^5"
+    }
+}

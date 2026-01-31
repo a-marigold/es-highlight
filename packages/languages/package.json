@@ -1,0 +1,52 @@
+{
+    "name": "@ts-highlight/languages",
+    "version": "0.1.0",
+    "module": "./dist/index.js",
+    "type": "module",
+    "private": false,
+    "license": "UNLICENSED",
+    "author": {
+        "name": "marigold",
+        "url": "https://github.com/a-marigold"
+    },
+    "scripts": {
+        "lint": "biome check",
+        "build": "rollup -c",
+        "prepublishOnly": "bun run build",
+        "pshPub": "bun publish --access public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/a-marigold/ts-highlight"
+    },
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "readme": "./README.md",
+    "description": "Generates HTML with highlighted TypeScript, JavaScript code",
+    "maintainers": [
+        {
+            "name": "marigold",
+            "url": "https://github.com/a-marigold"
+        }
+    ],
+    "keywords": [
+        "ts-highlight",
+        "highlight",
+        "syntax-highlight",
+        "highlighter"
+    ],
+    "files": [
+        "dist"
+    ],
+    "devDependencies": {
+        "@rollup/plugin-terser": "^0.4.4",
+        "@rollup/plugin-typescript": "^12.3.0",
+        "@types/bun": "latest",
+        "rollup": "^4.54.0",
+        "rollup-plugin-dts": "^6.3.0",
+        "tslib": "^2.8.1"
+    },
+    "peerDependencies": {
+        "typescript": "^5"
+    }
+}

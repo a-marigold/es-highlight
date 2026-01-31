@@ -24,6 +24,6 @@
         "outDir": "dist"
     },
 
-    "include": ["./src", "./rollup.config.js"],
+    "include": ["packages/core/src", "./rollup.config.js"],
     "exclude": ["node_modules", "dist"]
 }

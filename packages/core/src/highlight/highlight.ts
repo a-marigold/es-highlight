@@ -6,11 +6,13 @@ import type { HighlightCSSClasses } from '../generator';
 /**
  *
  *
- * Transforms received `source` string to HTML with higlighted source code.
+ *
+ * #### Transforms received `source` string to HTML with higlighted code.
  *
  * Classes could be divided with space as if they are in default HTML `class` attribute.
  *
  * @param {string} source JavaScript or TypeScript source code to highlight.
+ *
  * @param {HiglightCSSClasses} cssClasses object with CSS classes.
  *
  * @returns {string} string with HTML of highlighted code.
@@ -37,7 +39,9 @@ import type { HighlightCSSClasses } from '../generator';
  *
  * highlight('let a = "hello";', cssClasses);
  * ```
+ *
  * Output will be:
+ *
  * ```html
  * <pre class="pre-element-class">
  *   <code class="code-element-class">

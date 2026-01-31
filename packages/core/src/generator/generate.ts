@@ -3,8 +3,16 @@ import { OPENED_SPAN_WITH_CLASS, CLOSED_SPAN } from './constants';
 import type { Token } from '../tokenizer';
 import type { HighlightCSSClasses } from './types';
 
+/**
+ * #### Generates HTML with highlighted code from provided `tokens`
+ *
+ * @param {Token[]} tokens Array with language tokens (from `tokenize` function).
+ * @param {HighlightCSSClasses} cssClasses Object with CSS classes for generated HTML
+ * @returns {stirng} Generated HTML string
+ */
 export const generate = (
     tokens: Token[],
+
     cssClasses: HighlightCSSClasses,
 ): string => {
     const tokensLength = tokens.length;

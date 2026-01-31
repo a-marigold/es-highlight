@@ -9,27 +9,27 @@ import {
     identifierLikeMap,
 } from './constants';
 
-import type { Token, IdentifierLike } from './types';
+import type { Token, IdentifierLike, TokenizeConfig } from './types';
 
 /**
  *
- * *Tokenizer* or *Lexer* function.
+ * #### *Tokenizer* or *Lexer* function.
+ * #### Divides `source` to tokens.
  *
+ * @param {string} source javascript or typescript source code to tokenize.
  *
- * Divides `source` to tokens.
- *
- * @param {string} source - javascript or typescript source code to tokenize.
- *
- * @returns {Token[]} array with tokens from `source`.
+ * @returns {Token[]} Array with tokens from `source`.
  */
-export const tokenize = (source: string): Token[] => {
+export const tokenize = (source: string, config: TokenizeConfig): Token[] => {
     const tokens: Token[] = [];
 
     const sourceLength = source.length;
 
     let pos = 0;
     main: while (pos < sourceLength) {
-        if (source[pos] === ' ' || source[pos] === '\t') {
+        const char = source[pos];
+
+        if (char === ' ' || char === '\t') {
             const startPos = pos;
 
             pos++;
@@ -54,10 +54,10 @@ export const tokenize = (source: string): Token[] => {
             continue main;
         }
 
-        if (source[pos] === '\n' || source[pos] === '\r') {
+        if (char === '\n' || char === '\r') {
             const startPos = pos;
 
-            if (source[pos] === '\r') {
+            if (char === '\r') {
                 pos++;
             }
 
@@ -76,7 +76,7 @@ export const tokenize = (source: string): Token[] => {
         }
 
         // literals
-        if (IDENTIFIER_START_REGEXP.test(source[pos])) {
+        if (IDENTIFIER_START_REGEXP.test(char)) {
             const startPos = pos;
             pos++;
 
@@ -98,9 +98,9 @@ export const tokenize = (source: string): Token[] => {
             continue main;
         }
 
-        if (source[pos] === "'" || source[pos] === '"' || source[pos] === '`') {
+        if (char === "'" || char === '"' || char === '`') {
             const startPos = pos;
-            const startQuote = source[pos];
+            const startQuote = char;
 
             pos++;
 
@@ -119,7 +119,7 @@ export const tokenize = (source: string): Token[] => {
 
             continue main;
         }
-        if (NUMBER_REGEXP.test(source[pos])) {
+        if (NUMBER_REGEXP.test(char)) {
             const startPos = pos;
 
             while (pos < sourceLength && NUMBER_REGEXP.test(source[pos])) {
@@ -137,7 +137,7 @@ export const tokenize = (source: string): Token[] => {
         }
 
         // comments
-        if (source[pos] === '/') {
+        if (char === '/') {
             const startPos = pos;
 
             pos++;

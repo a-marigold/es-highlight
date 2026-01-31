@@ -5,10 +5,15 @@ on:
     branches: '**'
 
 jobs:
-  ci:
-    name: ci
+
+  coreCI:
 
     runs-on: ubuntu-latest
+
+    defaults:
+
+      run:
+        working-directory: ./packages/
 
     steps:
     - uses: actions/checkout@v4
@@ -27,3 +32,24 @@ jobs:
     - name: build
 
       run: bun run build
+
+  languagesCI:
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./packages/languages/
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: set up bun
+
+      uses: oven-sh@setup-bun@v2
+
+    - name: install dependencies
+      run: bun install
+
+    - name: run linter
+      run: bun run lint

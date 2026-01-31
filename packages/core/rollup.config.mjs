@@ -15,7 +15,15 @@ export default defineConfig([
             file: './dist/index.js',
             format: 'esm',
         },
-        plugins: [typescript({ exclude: ['**__tests__/**'] }), terser()],
+        plugins: [
+            typescript({
+                tsconfig: './tsconfig.json',
+                exclude: ['**__tests__/**', '**/*.test.ts'],
+
+                declaration: false,
+            }),
+            terser(),
+        ],
     },
 
     {

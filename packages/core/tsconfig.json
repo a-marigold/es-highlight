@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "outDir": "dist"
+    },
+
+    "extends": "../../tsconfig.base.json",
+
+    "include": ["./src", "./rollup.config.js"],
+
+    "exclude": ["node_modules", "dist"]
+}
